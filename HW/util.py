@@ -33,17 +33,10 @@ def disconnect_from_db(connection,cursor):
 
 # run_sql(cursor,"select from;")
 def run_and_fetch_sql(cursor, sql_string=""):
-	try:
-	    # Executing a SQL query
-	    # cursor.execute("SELECT version();")
-	    # cursor.execute("SELECT * from customer;")
-	    cursor.execute(sql_string)
-	    # Fetch result
-	    # record = cursor.fetchone()
-	    # print("You are connected to - ", record, "\n")
-	    record = cursor.fetchall()
-	    # print("Here are the first 5 rows", record[:5])
-	    return record
-	except (Exception, Error) as error:
-		print("Errors while executes the code: ", error)
-		return -1
+try:
+        cursor.execute(sql_string)
+        record = cursor.fetchall()
+        return record
+    except (Exception, Error) as error:
+        print("Errors while executing the code: ", error)
+        return -1
