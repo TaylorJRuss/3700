@@ -24,7 +24,7 @@ database='dvdrental'
 @app.route('/api/update_basket_a', methods=['GET'])
 def update_basket_a():
     try:
-        cursor, connection = connect_to_db()
+        cursor, connection = connect_to_db(username, password, host, port, database)
         cursor.execute("INSERT INTO basket_a (a, fruit_a) VALUES (%s, %s)", (5, 'Cherry'))
         connection.commit()
         disconnect_from_db(connection, cursor)
@@ -35,7 +35,7 @@ def update_basket_a():
 @app.route('/api/unique', methods=['GET'])
 def unique_fruits():
     try:
-        cursor, connection = connect_to_db()
+        cursor, connection = connect_to_db(username, password, host, port, database)
         unique_a = run_and_fetch_sql(cursor, "SELECT DISTINCT fruit_a FROM basket_a")
         unique_b = run_and_fetch_sql(cursor, "SELECT DISTINCT fruit_b FROM basket_b")
         disconnect_from_db(connection, cursor)
@@ -47,13 +47,14 @@ def unique_fruits():
         for fruit_a, fruit_b in zip(unique_a, unique_b):
             html += f"<tr><td>{fruit_a}</td><td>{fruit_b}</td></tr>"
         html += "</table>"
-    return render_template('index.html', sql_table = log, table_title=col_names)
 
+        return render_template('index.html', sql_table=html, table_title="Unique Fruits")
+    except Exception as e:
+        return str(e)
 
 if __name__ == '__main__':
-	# set debug mode
+    # set debug mode
     app.debug = True
     # your local machine ip
     ip = '127.0.0.1'
     app.run(host=ip)
-
