@@ -1,4 +1,8 @@
-Flask==2.0.3
-Jinja2==3.1.1
-markupsafe==2.0.1
-psycopg2
+Traceback (most recent call last):
+  File "main.py", line 2, in <module>
+    from util import connect_to_db, disconnect_from_db, run_and_fetch_sql
+  File "/home/taylor/Desktop/HW3700/HW/util.py", line 36
+    try:
+    ^
+IndentationError: expected an indented block
+
