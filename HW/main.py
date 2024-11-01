@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import util
+from util import connect_to_db, disconnect_from_db, run_and_fetch_sql
 
 # create an application instance
 # all requests it receives from clients to this object for handling
