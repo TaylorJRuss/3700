@@ -1,9 +1,17 @@
 from flask import Flask, render_template
 from util import connect_to_db, disconnect_from_db, run_and_fetch_sql
 
+# create an application instance
+# all requests it receives from clients to this object for handling
+# we are instantiating a Flask object by passing __name__ argument to the Flask constructor. 
+# The Flask constructor has one required argument which is the name of the application package. 
+# Most of the time __name__ is the correct value. The name of the application package is used 
+# by Flask to find static assets, templates and so on.
 app = Flask(__name__)
 
-
+# evil global variables
+# can be placed in a config file
+# here is a possible tutorial how you can do this
 username='russtay'
 password='database'
 host='127.0.0.1'
