@@ -52,7 +52,11 @@ def unique_fruits():
                 fruit_b = unique_b[i][0] if i < len(unique_b) else ''
                 log.append([fruit_a, fruit_b])
 
-        return render_template('index.html', sql_table=log, table_title=col_names)
+        html = "<table border='1'><tr><th>Unique Fruits in Basket A</th><th>Unique Fruits in Basket B</th></tr>"
+        for fruit_a, fruit_b in zip(unique_a, unique_b):
+            html += f"<tr><td>{fruit_a}</td><td>{fruit_b}</td></tr>"
+        html += "</table>"
+        return render_template('index.html', sql_table=html, table_title="Unique Fruits")
     except Exception as e:
         return str(e)
 
