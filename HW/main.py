@@ -43,7 +43,15 @@ def unique_fruits():
         unique_a = [item[0] for item in unique_a]
         unique_b = [item[0] for item in unique_b]
 
-        return render_template('index.html', unique_a=unique_a, unique_b=unique_b)
+        html = "<table border='1'><tr><th>Unique Fruits in Basket A</th><th>Unique Fruits in Basket B</th></tr>"
+        max_length = max(len(unique_a), len(unique_b))
+        for i in range(max_length):
+            fruit_a = unique_a[i] if i < len(unique_a) else ''
+            fruit_b = unique_b[i] if i < len(unique_b) else ''
+            html += f"<tr><td>{fruit_a}</td><td>{fruit_b}</td></tr>"
+        html += "</table>"
+
+        return html
     except Exception as e:
         return str(e)
 
