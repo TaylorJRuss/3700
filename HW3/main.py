@@ -58,3 +58,5 @@ if __name__ == '__main__':
     # your local machine ip
     ip = '127.0.0.1'
     app.run(host=ip)
+    ip = '127.0.0.1'
+    app.run(host=ip)
