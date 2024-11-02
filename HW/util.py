@@ -1,4 +1,4 @@
-dimport psycopg2
+import psycopg2
 from psycopg2 import Error
 
 # this function is based on the tutorial at: https://pynative.com/python-postgresql-tutorial/
