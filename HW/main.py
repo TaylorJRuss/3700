@@ -40,18 +40,19 @@ def unique_fruits():
         unique_b = run_and_fetch_sql(cursor, "SELECT fruit_b FROM basket_b WHERE fruit_b NOT IN (SELECT fruit_a FROM basket_a)")
         disconnect_from_db(connection, cursor)
 
-        unique_a = [item[0] for item in unique_a]
-        unique_b = [item[0] for item in unique_b]
+        if unique_a == -1 or unique_b == -1:
+            print('Something is wrong with the SQL command')
+            return "Error executing SQL commands"
+        else:
+            col_names = ["Unique Fruits in Basket A", "Unique Fruits in Basket B"]
+            max_length = max(len(unique_a), len(unique_b))
+            log = []
+            for i in range(max_length):
+                fruit_a = unique_a[i][0] if i < len(unique_a) else ''
+                fruit_b = unique_b[i][0] if i < len(unique_b) else ''
+                log.append([fruit_a, fruit_b])
 
-        html = "<table border='1'><tr><th>Unique Fruits in Basket A</th><th>Unique Fruits in Basket B</th></tr>"
-        max_length = max(len(unique_a), len(unique_b))
-        for i in range(max_length):
-            fruit_a = unique_a[i] if i < len(unique_a) else ''
-            fruit_b = unique_b[i] if i < len(unique_b) else ''
-            html += f"<tr><td>{fruit_a}</td><td>{fruit_b}</td></tr>"
-        html += "</table>"
-
-        return html
+        return render_template('index.html', sql_table=log, table_title=col_names)
     except Exception as e:
         return str(e)
 
