@@ -34,3 +34,8 @@ def run_and_fetch_sql(cursor, sql_string=""):
     except (Exception, Error) as error:
         print("Errors while executing the code: ", error)
         return -1
+        record = cursor.fetchall()
+        return record
+    except (Exception, Error) as error:
+        print("Errors while executing the code: ", error)
+        return -1
