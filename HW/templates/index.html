@@ -28,11 +28,10 @@
             <th>Unique Fruits in Basket B</th>
         </tr>
         <!-- Data rows -->
-        {% for row in sql_table %}
+        {% for i in range(max(unique_a|length, unique_b|length)) %}
         <tr>
-            {% for col in row %}
-            <td>{{ col }}</td>
-            {% endfor %}
+            <td>{{ unique_a[i] if i < unique_a|length else '' }}</td>
+            <td>{{ unique_b[i] if i < unique_b|length else '' }}</td>
         </tr>
         {% endfor %}
     </table>
