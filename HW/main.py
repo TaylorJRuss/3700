@@ -12,11 +12,11 @@ app = Flask(__name__)
 # evil global variables
 # can be placed in a config file
 # here is a possible tutorial how you can do this
-username='russtay'
-password='database'
+username='taylorruss'
+password='Gamer100%'
 host='127.0.0.1'
 port='5432'
-database='dvdrental'
+database='dvdrentals'
 
 # route is used to map a URL with a Python function
 # complete address: ip:port/
