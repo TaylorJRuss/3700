@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fruit Baskets</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Fruit Baskets</h1>
+
+    <p>Dynamically created table for unique fruits in Basket A and Basket B</p>
+
+    <table>
+        <!-- Header row -->
+        <tr>
+            <th>Unique Fruits in Basket A</th>
+            <th>Unique Fruits in Basket B</th>
+        </tr>
+        <!-- Data rows -->
+        {% for row in sql_table %}
+        <tr>
+            {% for col in row %}
+            <td>{{ col }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
+ 
+    </table> 
+
+
+</body>
+</html>
