@@ -36,19 +36,14 @@ def update_basket_a():
 def unique_fruits():
     try:
         cursor, connection = connect_to_db(username, password, host, port, database)
-        unique_a = run_and_fetch_sql(cursor, "SELECT DISTINCT fruit_a FROM basket_a")
-        unique_b = run_and_fetch_sql(cursor, "SELECT DISTINCT fruit_b FROM basket_b")
+        unique_a = run_and_fetch_sql(cursor, "SELECT fruit_a FROM basket_a WHERE fruit_a NOT IN (SELECT fruit_b FROM basket_b)")
+        unique_b = run_and_fetch_sql(cursor, "SELECT fruit_b FROM basket_b WHERE fruit_b NOT IN (SELECT fruit_a FROM basket_a)")
         disconnect_from_db(connection, cursor)
 
         unique_a = [item[0] for item in unique_a]
         unique_b = [item[0] for item in unique_b]
 
-        html = "<table border='1'><tr><th>Unique Fruits in Basket A</th><th>Unique Fruits in Basket B</th></tr>"
-        for fruit_a, fruit_b in zip(unique_a, unique_b):
-            html += f"<tr><td>{fruit_a}</td><td>{fruit_b}</td></tr>"
-        html += "</table>"
-
-        return render_template('index.html', sql_table=html, table_title="Unique Fruits")
+        return render_template('index.html', unique_a=unique_a, unique_b=unique_b)
     except Exception as e:
         return str(e)
 
