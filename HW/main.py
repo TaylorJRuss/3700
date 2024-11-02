@@ -12,11 +12,11 @@ app = Flask(__name__)
 # evil global variables
 # can be placed in a config file
 # here is a possible tutorial how you can do this
-username='taylorruss'
-password='Gamer100%'
+username='russtay'
+password='database'
 host='127.0.0.1'
 port='5432'
-database='dvdrentals'
+database='dvdrental'
 
 # route is used to map a URL with a Python function
 # complete address: ip:port/
@@ -36,8 +36,8 @@ def update_basket_a():
 def unique_fruits():
     try:
         cursor, connection = connect_to_db(username, password, host, port, database)
-        unique_a = run_and_fetch_sql(cursor, "SELECT fruit_a FROM basket_a WHERE fruit_a NOT IN (SELECT fruit_b FROM basket_b)")
-        unique_b = run_and_fetch_sql(cursor, "SELECT fruit_b FROM basket_b WHERE fruit_b NOT IN (SELECT fruit_a FROM basket_a)")
+        unique_a = run_and_fetch_sql(cursor, "SELECT DISTINCT fruit_a FROM basket_a")
+        unique_b = run_and_fetch_sql(cursor, "SELECT DISTINCT fruit_b FROM basket_b")
         disconnect_from_db(connection, cursor)
 
         unique_a = [item[0] for item in unique_a]
@@ -57,4 +57,4 @@ if __name__ == '__main__':
     app.debug = True
     # your local machine ip
     ip = '127.0.0.1'
-    app.run(host=ip)
+    app.run(host=ip
