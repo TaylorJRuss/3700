@@ -1,53 +1,44 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
-    <title>CSCI ECU</title>
+    <title>Fruit Baskets</title>
     <style>
-    table, th, td {
-      border:1px solid black;
-    }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 
-
 <body>
-     <!-- a normal HTML table -->
-     <table>
-      <!-- tr represents a row -->
-      <tr>
-        <!-- th is the col for header row -->
-        <th>University</th>
-        <th>Country</th>
-      </tr>
-      <tr>
-        <!-- td is the column for a normal row -->
-        <td>ECU</td>
-        <td>US</td>
-      </tr>
-      <tr>
-        <td>UNR</td>
-        <td>US</td>
-      </tr>
-    </table> 
+    <h1>Fruit Baskets</h1>
 
-    <p>Dynamically create a table for SQL results</p>
-    
+    <p>Dynamically created table for unique fruits in Basket A and Basket B</p>
+
     <table>
-      <!-- tr represents a row -->
-      <tr>
-        {% for col_name in table_title %}
-            <th>{{col_name}}</th>
+        <!-- Header row -->
+        <tr>
+            <th>Unique Fruits in Basket A</th>
+            <th>Unique Fruits in Basket B</th>
+        </tr>
+        <!-- Data rows -->
+        {% for row in sql_table %}
+        <tr>
+            {% for col in row %}
+            <td>{{ col }}</td>
+            {% endfor %}
+        </tr>
         {% endfor %}
-      </tr>
-      {% for row in sql_table %}
-      <tr>
-        {% for col in row %}
-        <td>{{col}}</td>
-        {% endfor %}
-      </tr>
-      {% endfor %}
+    </table>
+</body>
+
+</html>
  
     </table> 
 
